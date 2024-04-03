@@ -5,4 +5,4 @@
 ### O projeto de exemplo é focado em automação residencial, no entanto, é possível criar outras aplicações com outros componentes eletrônicos disponíveis na plataforma: https://www.tinkercad.com/.
 
 ### Você também pode desenvolver seu projeto em uma placa real, que pode ser adquirida em lojas de eletrônica ou pela internet. No entanto, fica o projeto padrão no Tinkercad, 
-visando a redução de custos de projeto. Lembrando que o mesmo programa desenvolvido de forma simulada pode ser colocado no Arduino sem nenhuma modificação necessária.
+### visando a redução de custos de projeto. Lembrando que o mesmo programa desenvolvido de forma simulada pode ser colocado no Arduino sem nenhuma modificação necessária.
