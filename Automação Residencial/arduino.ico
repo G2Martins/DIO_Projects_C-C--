@@ -1,0 +1,234 @@
+#include <LiquidCrystal.h> // Corrigindo o nome da biblioteca
+
+#include <IRremote.h>
+
+int RECV_PIN = 2;
+
+IRrecv irrecv(RECV_PIN);
+
+const int sala = 13;
+const int cozinha = 12;
+const int quarto = 11;
+const int banheiro = 10;
+const int quintal = 9;
+const int garagem = 8;
+
+LiquidCrystal lcd(0, 1, 3, 4, 5, 6); // Corrigindo o nome do objeto
+
+long int codTecla1 = 16582903;
+long int codTecla2 = 16615543;
+long int codTecla3 = 16599223;
+long int codTecla4 = 16591063;
+long int codTecla5 = 16623703;
+long int codTecla6 = 16607383;
+
+int stsala = 0;
+int stcozinha = 0;
+int stquarto = 0;
+int stbanheiro = 0;
+int stquintal = 0;
+int stgaragem = 0;
+
+decode_results results;
+
+void setup()
+{
+
+  irrecv.enableIRIn();
+  lcd.begin(16, 2);
+  pinMode(sala, OUTPUT); // Corrigindo a função pinMode
+  pinMode(cozinha, OUTPUT);
+  pinMode(quarto, OUTPUT);
+  pinMode(banheiro, OUTPUT);
+  pinMode(quintal, OUTPUT);
+  pinMode(garagem, OUTPUT);
+
+  lcd.clear();
+  lcd.setCursor(1, 0);
+  lcd.print("INICIALIZANDO");
+  lcd.setCursor(2, 1);
+  lcd.print("ILUMINACAO");
+  delay(500);
+
+  lcd.clear();
+  lcd.setCursor(1, 0);
+  lcd.print("SEJA BEM VINDO");
+  delay(500);
+  lcd.clear();
+}
+
+void loop()
+{
+  if (irrecv.decode(&results))
+  {
+    // Controle da lâmpada da sala
+    if ((results.value == codTecla1) && (stsala == 0))
+    {
+      digitalWrite(sala, HIGH);
+      stsala = 1;
+
+      lcd.clear();
+      lcd.setCursor(1, 0);
+      lcd.print("LUZ DA SALA");
+      lcd.setCursor(4, 2);
+      lcd.print("ACESA");
+      delay(200);
+      lcd.clear();
+    }
+    else if ((results.value == codTecla1) && (stsala == 1))
+    {
+      digitalWrite(sala, LOW);
+      stsala = 0;
+
+      lcd.clear();
+      lcd.setCursor(1, 0);
+      lcd.print("LUZ DA SALA");
+      lcd.setCursor(4, 2);
+      lcd.print("APAGADA");
+      delay(200);
+      lcd.clear();
+    }
+
+    // Controle da lâmpada da cozinha
+    if ((results.value == codTecla2) && (stcozinha == 0))
+    {
+      digitalWrite(cozinha, HIGH);
+      stcozinha = 1;
+
+      lcd.clear();
+      lcd.setCursor(1, 0);
+      lcd.print("LUZ DA COZINHA");
+      lcd.setCursor(4, 2);
+      lcd.print("ACESA");
+      delay(200);
+      lcd.clear();
+    }
+    else if ((results.value == codTecla2) && (stcozinha == 1))
+    {
+      digitalWrite(cozinha, LOW);
+      stcozinha = 0;
+
+      lcd.clear();
+      lcd.setCursor(1, 0);
+      lcd.print("LUZ DA COZINHA");
+      lcd.setCursor(4, 2);
+      lcd.print("APAGADA");
+      delay(200);
+      lcd.clear();
+    }
+
+    // Controle da lâmpada do quarto
+    if ((results.value == codTecla3) && (stquarto == 0))
+    {
+      digitalWrite(quarto, HIGH);
+      stquarto = 1;
+
+      lcd.clear();
+      lcd.setCursor(1, 0);
+      lcd.print("LUZ DO QUARTO");
+      lcd.setCursor(4, 2);
+      lcd.print("ACESA");
+      delay(200);
+      lcd.clear();
+    }
+    else if ((results.value == codTecla3) && (stquarto == 1))
+    {
+      digitalWrite(quarto, LOW);
+      stquarto = 0;
+
+      lcd.clear();
+      lcd.setCursor(1, 0);
+      lcd.print("LUZ DO QUARTO");
+      lcd.setCursor(4, 2);
+      lcd.print("APAGADA");
+      delay(200);
+      lcd.clear();
+    }
+
+    // Controle da lâmpada do banheiro
+    if ((results.value == codTecla4) && (stbanheiro == 0))
+    {
+      digitalWrite(banheiro, HIGH);
+      stbanheiro = 1;
+
+      lcd.clear();
+      lcd.setCursor(1, 0);
+      lcd.print("LUZ DO BANHEIRO");
+      lcd.setCursor(4, 2);
+      lcd.print("ACESA");
+      delay(200);
+      lcd.clear();
+    }
+    else if ((results.value == codTecla4) && (stbanheiro == 1))
+    {
+      digitalWrite(banheiro, LOW);
+      stbanheiro = 0;
+
+      lcd.clear();
+      lcd.setCursor(1, 0);
+      lcd.print("LUZ DO BANHEIRO");
+      lcd.setCursor(4, 2);
+      lcd.print("APAGADA");
+      delay(200);
+      lcd.clear();
+    }
+
+    // Controle da lâmpada do quintal
+    if ((results.value == codTecla5) && (stquintal == 0))
+    {
+      digitalWrite(quintal, HIGH);
+      stquintal = 1;
+
+      lcd.clear();
+      lcd.setCursor(1, 0);
+      lcd.print("LUZ DO QUINTAL");
+      lcd.setCursor(4, 2);
+      lcd.print("ACESA");
+      delay(200);
+      lcd.clear();
+    }
+    else if ((results.value == codTecla5) && (stquintal == 1))
+    {
+      digitalWrite(quintal, LOW);
+      stquintal = 0;
+
+      lcd.clear();
+      lcd.setCursor(1, 0);
+      lcd.print("LUZ DO QUINTAL");
+      lcd.setCursor(4, 2);
+      lcd.print("APAGADA");
+      delay(200);
+      lcd.clear();
+    }
+
+    // Controle da lâmpada da garagem
+    if ((results.value == codTecla6) && (stgaragem == 0))
+    {
+      digitalWrite(garagem, HIGH);
+      stgaragem = 1;
+
+      lcd.clear();
+      lcd.setCursor(1, 0);
+      lcd.print("LUZ DA GARAGEM");
+      lcd.setCursor(4, 2);
+      lcd.print("ACESA");
+      delay(200);
+      lcd.clear();
+    }
+    else if ((results.value == codTecla6) && (stgaragem == 1))
+    {
+      digitalWrite(garagem, LOW);
+      stgaragem = 0;
+
+      lcd.clear();
+      lcd.setCursor(1, 0);
+      lcd.print("LUZ DA GARAGEM");
+      lcd.setCursor(4, 2);
+      lcd.print("APAGADA");
+      delay(200);
+      lcd.clear();
+    }
+  }
+}
+
+
